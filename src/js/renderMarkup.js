@@ -1,7 +1,6 @@
-const refs = {
-    searchFormEl: document.querySelector('.search-form'),
-    imagesContainerEl: document.querySelector('.gallery'),
-  };
+import { getRefs } from './getRefs';
+
+const refs = getRefs();
 
 function createImageElement(hits) {
   return hits

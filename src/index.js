@@ -1,5 +1,5 @@
 import ImageApiService from './js/imageApiService';
-
+import { getRefs } from './js/getRefs';
 import LoadMoreButton from './js/loadMoreButton';
 
 import { renderMarkup, clear } from './js/renderMarkup';
@@ -9,10 +9,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const refs = {
-    searchFormEl: document.querySelector('.search-form'),
-    imagesContainerEl: document.querySelector('.gallery'),
-  };
+const refs = getRefs();
 
 const imageApiService = new ImageApiService();
 
@@ -51,6 +48,7 @@ async function onSearch(e) {
         'Sorry, there are no images matching your search query. Please try again.'
       );
       loadMoreButton.hide();
+      
       return;
     } else {
       Notify.success(`Hooray! We found ${totalHits} images.`);
@@ -73,7 +71,7 @@ async function onLoadMore() {
       Notify.info("We're sorry, but you've reached the end of search results.");
       renderMarkup(hits);
       loadMoreButton.hide();
-    }
+    };
 
     renderMarkup(hits);
     scroll();
